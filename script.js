@@ -83,6 +83,10 @@ $(document).ready(function(){
     $('#clearButton').click(function() {
         clearCanvas();
     });
+    $('#upload').click(function(){
+        share();
+    });
+    
     document.getElementById('filePick').addEventListener('change', handleFileSelect, false);
 
 });
