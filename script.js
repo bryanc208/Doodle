@@ -238,7 +238,7 @@ function share(){
 }
 
 function upload() {
-    var img = document.getElementById("canvas-id").toDataURL("image/png").split(',')[1];
+    var img = canvas.toDataURL("image/png").split(',')[1];
     $.ajax({
         url: 'https://api.imgur.com/3/image',
         type: 'POST',
