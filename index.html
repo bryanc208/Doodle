@@ -5,7 +5,30 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div id="canvasDiv"></div>
+        <div id="container">
+            <form>
+            <input type="radio" name="editType" value="Text" id="text" checked=True>Text
+            <input type="radio" name="editType" value="Draw" id = "draw">Draw
+            </form>
+            <br>
+            <button type=button id="colorRed" class="colorButton"><img src="red.png"/></button>
+            <button type=button id="colorBlue" class="colorButton"><img src="blue.png"/></button>
+            <button type=button id="colorYellow" class="colorButton"><img src="yellow.png"/></button>
+            <button type=button id="colorBlack" class="colorButton"><img src="black.png"/></button>
+            <button type=button id="colorPink" class="colorButton"><img src="pink.png"/></button>
+            <button type=button id="clearButton">Clear</button>
+            <br>
+            <input type="text" id="textToAdd" />
+            <br>
+            <canvas id="canvas" width='480' height='800'></canvas>
+            <img id="canvasImg">
+            <br>
+            <input type="file" id="filePick" name="files[]" multiple />
+            <output id="list"></output>
+            <br>
+            <button type=button id="save">Save Image</button>
+            <button type=button id="upload">Upload Image</button>
+        </div>
     </body>
 
 </html>
