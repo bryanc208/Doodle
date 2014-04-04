@@ -87,6 +87,8 @@ $(document).ready(function(){
         share();
     });
     
+    var _gaq = _gaq || [];
+    
     document.getElementById('filePick').addEventListener('change', handleFileSelect, false);
 
 });
@@ -202,7 +204,7 @@ function share(){
         },
         data: {
             type: 'base64',
-            name: 'neon.jpg',
+            name: 'img.jpg',
             title: 'Image',
             description: 'Made using http://bryanc208.github.io/Doodle',
             image: img
