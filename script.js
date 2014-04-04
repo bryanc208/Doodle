@@ -20,11 +20,14 @@ var textUsed = false;
 var MAX_WIDTH = 800;
 var MAX_HEIGHT = 600;
 
+var width;
+var height;
+
 $(document).ready(function(){
     imageObj.onload = function() { 
         
-        var width = imageObj.width;
-        var height = imageObj.height;
+        width = imageObj.width;
+        height = imageObj.height;
 
         if (width > height) {
           if (width > MAX_WIDTH) {
@@ -104,7 +107,7 @@ $(document).ready(function(){
     });
     $('#upload').click(function(){
         upload();
-    
+    });
     document.getElementById('filePick').addEventListener('change', handleFileSelect, false);
 
 });
@@ -140,9 +143,6 @@ function redraw(){
     context.textAlign = 'center';
     var x = canvas.width / 2;
     context.fillText(textToFill, x, textYLoc, 470);
-    
-    
-    
 
 }
 
@@ -168,7 +168,6 @@ function addClick(x, y, dragging)
     }else if(document.getElementById('text').checked){
         textYLoc = y;
         textUsed = true;
-        
     }
 }
 
@@ -202,7 +201,7 @@ function handleFileSelect(evt) {
     }
   }
 
-function share(){
+/*function share(){
 
     var img;
     try {
@@ -235,7 +234,7 @@ function share(){
         w.close();
         _gaq.push(['_trackEvent', 'neonflames', 'share', 'fail']);
     });
-}
+}*/
 
 function upload() {
     var img = canvas.toDataURL("image/png").split(',')[1];
