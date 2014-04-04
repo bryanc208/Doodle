@@ -180,7 +180,7 @@ function handleFileSelect(evt) {
     }
   }
 
-/*function share(){
+function share(){
 
     var img;
     try {
@@ -194,13 +194,13 @@ function handleFileSelect(evt) {
         url: 'https://api.imgur.com/3/upload.json',
         type: 'POST',
         headers: {
-            Authorization: 'Client-ID cc01e3195c1adc2'
+            Authorization: 'Client-ID bd9e5b076b91742'
         },
         data: {
             type: 'base64',
             name: 'neon.jpg',
-            title: 'Nebula',
-            description: 'Made using http://29a.ch/sandbox/2011/neonflames/',
+            title: 'Image',
+            description: 'Made using http://bryanc208.github.io/Doodle',
             image: img
         },
         dataType: 'json'
@@ -213,4 +213,4 @@ function handleFileSelect(evt) {
         w.close();
         _gaq.push(['_trackEvent', 'neonflames', 'share', 'fail']);
     });
-}*/
+}
