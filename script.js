@@ -2,8 +2,6 @@ var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
 var paint;
-var canvasWidth = 480;
-var canvasHeight = 800;
 
 var colorPink = "#cb3594";
 var colorRed = "#F00000";
@@ -19,11 +17,32 @@ var textToFill = '';
 var textYLoc = 600;
 var textUsed = false;
 
-
+var MAX_WIDTH = 800;
+var MAX_HEIGHT = 600;
 
 $(document).ready(function(){
-    imageObj.onload = function() {
-        context.drawImage(imageObj, 0, 0, canvasWidth, canvasHeight);
+    imageObj.onload = function() { 
+        
+        var width = imageObj.width;
+        var height = imageObj.height;
+
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(imageObj, 0, 0, width, height);
+        
+        $('canvas').width = width;
+        $('canvas').height = height;
     }
     imageObj.src = '';
     
@@ -84,10 +103,7 @@ $(document).ready(function(){
         clearCanvas();
     });
     $('#upload').click(function(){
-        share();
-    });
-    
-    var _gaq = _gaq || [];
+        upload();
     
     document.getElementById('filePick').addEventListener('change', handleFileSelect, false);
 
@@ -95,7 +111,7 @@ $(document).ready(function(){
 
 function redraw(){
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    context.drawImage(imageObj, 0, 0, canvasWidth,canvasHeight);
+    context.drawImage(imageObj, 0, 0, width, height);
     
     //drawing
     context.lineJoin = "round";
@@ -218,5 +234,24 @@ function share(){
         alert('Could not reach api.imgur.com. Sorry :(');
         w.close();
         _gaq.push(['_trackEvent', 'neonflames', 'share', 'fail']);
+    });
+}
+
+function upload() {
+    var img = document.getElementById("canvas-id").toDataURL("image/png").split(',')[1];
+    $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        type: 'POST',
+        headers: { "Authorization": "Client-ID bd9e5b076b91742" },
+        dataType: 'json',
+        data: {
+            image: img
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            console.log(response);
+        }
     });
 }
