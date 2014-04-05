@@ -246,8 +246,10 @@ function upload() {
         data: {
             image: img
         },
-        success: function (response) {
-            console.log(response);
+        success: function (data) {
+            var url = 'http://imgur.com/' + data.data.id + '?tags';
+            $('uploadURL').href = url;
+            $('uploadURL').val = url;
         },
         error: function (response) {
             console.log(response);
