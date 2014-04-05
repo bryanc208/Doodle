@@ -89,25 +89,40 @@ $(document).ready(function(){
     
     $('#colorRed').click(function() {
         curColor = colorRed;
+        if(!$('#draw').checked){
+            $('#draw').prop("checked", true);
+        }
     });
     $('#colorBlue').click(function() {
         curColor = colorBlue;
+        if(!$('#draw').checked){
+            $('#draw').prop("checked", true);
+        }        
     });
     $('#colorYellow').click(function() {
         curColor = colorYellow;
+        if(!$('#draw').checked){
+            $('#draw').prop("checked", true);
+        }        
     });
     $('#colorBlack').click(function() {
         curColor = colorBlack;
+        if(!$('#draw').checked){
+            $('#draw').prop("checked", true);
+        }        
     });
     $('#colorPink').click(function() {
         curColor = colorPink;
+        if(!$('#draw').checked){
+            $('#draw').prop("checked", true);
+        }    
     });
     $('#clearButton').click(function() {
         clearCanvas();
     });
-    $('#upload').click(function(){
-        upload();
-    });
+    
+    $('#upload').click(upload);
+    
     document.getElementById('filePick').addEventListener('change', handleFileSelect, false);
 
 });
@@ -148,7 +163,7 @@ function redraw(){
 
 function clearCanvas()
 {
-	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     clickX = [];
     clickY = [];
     clickDrag = [];
@@ -201,42 +216,8 @@ function handleFileSelect(evt) {
     }
   }
 
-/*function share(){
-
-    var img;
-    try {
-        img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    } catch(e) {
-        img = canvas.toDataURL().split(',')[1];
-    }
-    var w = window.open();
-    w.document.write('Uploading to imgur.com...');
-    $.ajax({
-        url: 'https://api.imgur.com/3/upload.json',
-        type: 'POST',
-        headers: {
-            Authorization: 'Client-ID bd9e5b076b91742'
-        },
-        data: {
-            type: 'base64',
-            name: 'img.jpg',
-            title: 'Image',
-            description: 'Made using http://bryanc208.github.io/Doodle',
-            image: img
-        },
-        dataType: 'json'
-    }).success(function(data) {
-        var url = 'http://imgur.com/' + data.data.id + '?tags';
-        _gaq.push(['_trackEvent', 'neonflames', 'share', url]);
-        w.location.href = url;
-    }).error(function() {
-        alert('Could not reach api.imgur.com. Sorry :(');
-        w.close();
-        _gaq.push(['_trackEvent', 'neonflames', 'share', 'fail']);
-    });
-}*/
-
 function upload() {
+    alert("upload!");
     var img = canvas.toDataURL("image/png").split(',')[1];
     $.ajax({
         url: 'https://api.imgur.com/3/image',
@@ -248,8 +229,7 @@ function upload() {
         },
         success: function (data) {
             var url = 'http://imgur.com/' + data.data.id + '?tags';
-            $('uploadURL').href = url;
-            $('uploadURL').val = url;
+            $("<a>").html(url).attr("href", url).appendTo($("#container"));
         },
         error: function (response) {
             console.log(response);
