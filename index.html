@@ -3,31 +3,39 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
         <script src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css"/>
+        <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
     </head>
     <body>
-        <div id="container">
-            <form>
-            <input type="radio" name="editType" value="Text" id="text" checked=True>Text
-            <input type="radio" name="editType" value="Draw" id = "draw">Draw
-            </form>
-            <br>
-            <button type=button id="colorRed" class="colorButton"><img src="red.png"/></button>
-            <button type=button id="colorBlue" class="colorButton"><img src="blue.png"/></button>
-            <button type=button id="colorYellow" class="colorButton"><img src="yellow.png"/></button>
-            <button type=button id="colorBlack" class="colorButton"><img src="black.png"/></button>
-            <button type=button id="colorPink" class="colorButton"><img src="pink.png"/></button>
-            <button type=button id="clearButton">Clear</button>
-            <br>
-            <input type="text" id="textToAdd" />
-            <br>
-            <canvas id="canvas" width='480' height='800'></canvas>
-            <img id="canvasImg">
-            <br>
-            <input type="file" id="filePick" name="files[]" multiple />
-            <output id="list"></output>
-            <br>
-            <button type=button id="save">Save Image</button>
-            <button type=button id="upload">Upload Image</button>
+        <div class="wrapper">
+            <div id="container">
+                <form class="text">
+                <input type="radio" name="editType" value="Text" id="text" checked=True>Text
+                <input type="radio" name="editType" value="Draw" id="draw">Draw
+                <!--<input type="radio" name="editType" value="Erase" id="erase">Erase-->
+                </form>
+                <div id="colorSelector"></div>
+
+                <br>
+                <div id="textContainer">
+                    <input type="text" id="textToAdd" />
+                </div>
+                
+                <br>
+                <canvas id="canvas"></canvas>
+                <img id="canvasImg">
+                <br>
+                <input type="file" id="filePick" name="files[]" multiple />
+                <output id="list"></output>
+                <br>
+                <span id="uploadURL" href=''></span>
+            </div>
+        </div>
+        <div id="buttons">
+                <button type=button id="save">Save Image</button>
+                <button type=button id="upload">Upload Image</button>
+                <button type=button id="undo">Undo</button>
+                <button type=button id="clearButton">Clear</button>
         </div>
     </body>
 

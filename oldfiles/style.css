@@ -1,0 +1,23 @@
+#canvas {
+    border-color: black;
+    border: 1px;
+    border-style: solid;
+    width: 480px;
+    height: 800px;
+}
+
+#container{
+    text-align: center;
+    padding: 1px;
+    border: 1px;
+    
+}
+
+.colorButton{
+    
+}
+
+#canvasImg{
+    visibility: inherit;
+    
+}
